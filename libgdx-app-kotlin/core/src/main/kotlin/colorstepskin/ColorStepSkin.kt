@@ -36,22 +36,22 @@ class ColorStepSkin : Skin() {
     
     /*styles*/
     /*default*/
-    private var scroll:Array<ScrollPaneStyle> = Array(101){ScrollPaneStyle()}
-    private var split:Array<SplitPaneStyle> = Array(101){SplitPaneStyle()}
-    private var tree:Array<TreeStyle> = Array(101){TreeStyle()}
-    private var label:Array<LabelStyle> = Array(101){LabelStyle()}
-    private var button:Array<ButtonStyle> = Array(101){ButtonStyle()}
-    private var tbutton:Array<TextButtonStyle> = Array(101){TextButtonStyle()}
-    private var check:Array<CheckBoxStyle> = Array(101){CheckBoxStyle()}
-    private var tfield:Array<TextFieldStyle> = Array(101){TextFieldStyle()}
-    private var tarea:Array<TextFieldStyle> = Array(101){TextFieldStyle()}
-    private var list:Array<ListStyle> = Array(101){ListStyle()}
-    private var select:Array<SelectBoxStyle> = Array(101){SelectBoxStyle()}
-    private var progress:Array<ProgressBarStyle> = Array(101){ProgressBarStyle()}
-    private var slider:Array<SliderStyle> = Array(101){SliderStyle()}
-    private var window:Array<WindowStyle> = Array(101){WindowStyle()}
-    private var tpad:Array<TouchpadStyle> = Array(101){TouchpadStyle()}
-    private var dialog:Array<WindowStyle> = Array(101){WindowStyle()}
+    var scroll:Array<ScrollPaneStyle> = Array(101){ScrollPaneStyle()}
+    var split:Array<SplitPaneStyle> = Array(101){SplitPaneStyle()}
+    var tree:Array<TreeStyle> = Array(101){TreeStyle()}
+    var label:Array<LabelStyle> = Array(101){LabelStyle()}
+    var button:Array<ButtonStyle> = Array(101){ButtonStyle()}
+    var tbutton:Array<TextButtonStyle> = Array(101){TextButtonStyle()}
+    var check:Array<CheckBoxStyle> = Array(101){CheckBoxStyle()}
+    var tfield:Array<TextFieldStyle> = Array(101){TextFieldStyle()}
+    var tarea:Array<TextFieldStyle> = Array(101){TextFieldStyle()}
+    var list:Array<ListStyle> = Array(101){ListStyle()}
+    var select:Array<SelectBoxStyle> = Array(101){SelectBoxStyle()}
+    var progress:Array<ProgressBarStyle> = Array(101){ProgressBarStyle()}
+    var slider:Array<SliderStyle> = Array(101){SliderStyle()}
+    var window:Array<WindowStyle> = Array(101){WindowStyle()}
+    var tpad:Array<TouchpadStyle> = Array(101){TouchpadStyle()}
+    var dialog:Array<WindowStyle> = Array(101){WindowStyle()}
     
     /*dark*/
     val scrollDark:Array<ScrollPaneStyle> = Array(101){ScrollPaneStyle()}
@@ -262,30 +262,10 @@ class ColorStepSkin : Skin() {
         
         /*default*/
         defaultFonSun() /*short name binded to text sun scheme*/
-        for (hue in 0..100){
-            
-            add("$hue", scroll[hue])
-            add("$hue", split[hue])
-            add("$hue", tree[hue])
-            add("$hue", label[hue])
-            add("$hue", button[hue])
-            add("$hue", tbutton[hue])
-            add("$hue", check[hue])
-            add("$hue", tfield[hue])
-            add("$hue", tarea[hue])
-            add("$hue", list[hue])
-            add("$hue", select[hue])
-            add("$hue", progress[hue])
-            add("$hue", slider[hue])
-            add("$hue", window[hue])
-            add("$hue", tpad[hue])
-            add("$hue", dialog[hue])
-        
-        }
-    
     }
     
     fun defaultDark(){
+        defaultStyle = styleBox.dark
         for (hue in 0..100){
             scroll[hue] = scrollDark[hue]
             split[hue] = splitDark[hue]
@@ -304,9 +284,11 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadDark[hue]
             dialog[hue] = dialogDark[hue]
         }
+        createDefaultStyle(this)
     }
     
     fun defaultTextDark(){
+        defaultStyle = styleBox.textdark
         for (hue in 0..100){
             scroll[hue] = scrollTextDark[hue]
             split[hue] = splitTextDark[hue]
@@ -325,9 +307,11 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadTextDark[hue]
             dialog[hue] = dialogTextDark[hue]
         }
+        createDefaultStyle(this)
     }
     
     fun defaultFonDark(){
+        defaultStyle = styleBox.fondark
         for (hue in 0..100){
             scroll[hue] = scrollFonDark[hue]
             split[hue] = splitFonDark[hue]
@@ -346,10 +330,12 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadFonDark[hue]
             dialog[hue] = dialogFonDark[hue]
         }
+        createDefaultStyle(this)
     }
     
     
     fun defaultAcid(){
+        defaultStyle = styleBox.acid
         for (hue in 0..100){
             scroll[hue] = scrollAcid[hue]
             split[hue] = splitAcid[hue]
@@ -368,9 +354,11 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadAcid[hue]
             dialog[hue] = dialogAcid[hue]
         }
+        createDefaultStyle(this)
     }
     
     fun defaultTextAcid(){
+        defaultStyle = styleBox.textacid
         for (hue in 0..100){
             scroll[hue] = scrollTextAcid[hue]
             split[hue] = splitTextAcid[hue]
@@ -389,9 +377,11 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadTextAcid[hue]
             dialog[hue] = dialogTextAcid[hue]
         }
+        createDefaultStyle(this)
     }
     
     fun defaultFonAcid(){
+        defaultStyle = styleBox.fonacid
         for (hue in 0..100){
             scroll[hue] = scrollFonAcid[hue]
             split[hue] = splitFonAcid[hue]
@@ -410,10 +400,12 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadFonAcid[hue]
             dialog[hue] = dialogFonAcid[hue]
         }
+        createDefaultStyle(this)
     }
     
     
     fun defaultSun(){
+        defaultStyle = styleBox.sun
         for (hue in 0..100){
             scroll[hue] = scrollSun[hue]
             split[hue] = splitSun[hue]
@@ -432,9 +424,11 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadSun[hue]
             dialog[hue] = dialogSun[hue]
         }
+        createDefaultStyle(this)
     }
     
     fun defaultTextSun(){
+        defaultStyle = styleBox.textsun
         for (hue in 0..100){
             scroll[hue] = scrollTextSun[hue]
             split[hue] = splitTextSun[hue]
@@ -453,9 +447,11 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadTextSun[hue]
             dialog[hue] = dialogTextSun[hue]
         }
+        createDefaultStyle(this)
     }
     
     fun defaultFonSun(){
+        defaultStyle = styleBox.fonsun
         for (hue in 0..100){
             scroll[hue] = scrollFonSun[hue]
             split[hue] = splitFonSun[hue]
@@ -474,6 +470,152 @@ class ColorStepSkin : Skin() {
             tpad[hue] = tpadFonSun[hue]
             dialog[hue] = dialogFonSun[hue]
         }
+        createDefaultStyle(this)
     }
     
+    
+    /** @return [BitmapFont] used in default styles. Font size 32*/
+    val styleFont32 get() = when{fontFon -> font32fon else -> font32 }
+    
+    /**@param sn style name
+     * @return [BitmapFont] depend of style name. Font size 32*/
+    fun styleFont32(sn:String) = when{sn.startsWith("fon") || sn[0] in "0123456789" && fontFon -> font32fon else -> font32 }
+    
+    /** @return [BitmapFont] used in default styles. Font size 48*/
+    val styleFont48 get() = when{fontFon -> font48fon else -> font48 }
+    
+    /**@param sn style name
+     * @return [BitmapFont] depend of style name. Font size 48*/
+    fun styleFont48(sn:String) = when{sn.startsWith("fon") || sn[0] in "0123456789" && fontFon -> font48fon else -> font48 }
+    
+    /** @return [BitmapFont] used in default styles. Font size 64*/
+    val styleFont64 get() = when{fontFon -> font64fon else -> font64 }
+    
+    /**@param sn style name
+     * @return [BitmapFont] depend of style name. Font size 64*/
+    fun styleFont64(sn:String) = when{sn.startsWith("fon") || sn[0] in "0123456789" && fontFon -> font64fon else -> font64 }
+    
+    /** @return [BitmapFont] used in default styles. Font size is size of used default font*/
+    val styleFont get() = when{fontFon -> defaultFontFon else -> defaultFont }
+    
+    /**@param sn style name
+     * @return [BitmapFont] depend of style name. Font size is size of used default font*/
+    fun styleFont(sn:String) = when{sn.startsWith("fon") || sn[0] in "0123456789" && fontFon -> defaultFontFon else -> defaultFont }
+    
+    
+    /*font switching*/
+    /**available styles list*/
+    class StyleBox{
+        val dark = 0
+        val sun = 1
+        val acid = 2
+        val textdark = 3
+        val textacid = 4
+        val textsun = 5
+        val fondark = 6
+        val fonacid = 7
+        val fonsun = 8
+    }
+    val styleBox = StyleBox()
+    private val fonArray = arrayOf(styleBox.fondark, styleBox.fonacid, styleBox.fonsun)
+    private val fontFon get() = defaultStyle in fonArray
+    
+    private var defaultStyle = styleBox.fonsun
+    private var backupDefaultStyle = styleBox.fonsun
+    /**available fonts list*/
+    class FontBox{
+        val font32fon = -32
+        val font32 = 32
+        val font48fon = -48
+        val font48 = 48
+        val font64fon = -64
+        val font64 = 64
+    }
+    val fontBox = FontBox()
+    private var backupDefaultFont = fontBox.font32fon
+    
+    /**switch styles font to 32, include default fonts*/
+    fun useFont32(){
+        defaultFont = font32
+        defaultFontFon = font32fon
+        createDarkStyle(this)
+        createAcidStyle(this)
+        createSunStyle(this)
+        when(defaultStyle){
+            styleBox.dark -> defaultDark()
+            styleBox.textdark -> defaultTextDark()
+            styleBox.fondark -> defaultFonDark()
+            styleBox.acid -> defaultAcid()
+            styleBox.textacid -> defaultTextAcid()
+            styleBox.fonacid -> defaultFonAcid()
+            styleBox.sun -> defaultSun()
+            styleBox.textsun -> defaultTextSun()
+            styleBox.fonsun -> defaultFonSun()
+        }
+    }
+    
+    /**switch styles font to 48, include default fonts*/
+    fun useFont48(){
+        defaultFont = font48
+        defaultFontFon = font48fon
+        createDarkStyle(this)
+        createAcidStyle(this)
+        createSunStyle(this)
+        when(defaultStyle){
+            styleBox.dark -> defaultDark()
+            styleBox.textdark -> defaultTextDark()
+            styleBox.fondark -> defaultFonDark()
+            styleBox.acid -> defaultAcid()
+            styleBox.textacid -> defaultTextAcid()
+            styleBox.fonacid -> defaultFonAcid()
+            styleBox.sun -> defaultSun()
+            styleBox.textsun -> defaultTextSun()
+            styleBox.fonsun -> defaultFonSun()
+        }
+    }
+    
+    /**switch styles font to 64, include default fonts*/
+    fun useFont64(){
+        defaultFont = font64
+        defaultFontFon = font64fon
+        createDarkStyle(this)
+        createAcidStyle(this)
+        createSunStyle(this)
+        when(defaultStyle){
+            styleBox.dark -> defaultDark()
+            styleBox.textdark -> defaultTextDark()
+            styleBox.fondark -> defaultFonDark()
+            styleBox.acid -> defaultAcid()
+            styleBox.textacid -> defaultTextAcid()
+            styleBox.fonacid -> defaultFonAcid()
+            styleBox.sun -> defaultSun()
+            styleBox.textsun -> defaultTextSun()
+            styleBox.fonsun -> defaultFonSun()
+        }
+    }
+    
+    /*default style section*/
+    
+    /**set new default style+font values
+     * @param styleName value from [ColorStepSkin.styleBox] property
+     * @param fontName value from [ColorStepSkin.fontBox] property*/
+    fun setDefault(styleName:Int, fontName:Int){
+        backupDefaultStyle = styleName
+        defaultStyle = styleName
+        backupDefaultFont = fontName
+        when(fontName){
+            fontBox.font32fon, fontBox.font32 -> useFont32()
+            fontBox.font48fon, fontBox.font48 -> useFont48()
+            fontBox.font64fon, fontBox.font64 -> useFont64()
+        }
+    }
+    /**reset used style to default style. Can be controlled using [setDefaultStyle]*/
+    fun useDefault(){
+        defaultStyle = backupDefaultStyle
+        when(backupDefaultFont){
+            fontBox.font32fon, fontBox.font32 -> useFont32()
+            fontBox.font48fon, fontBox.font48 -> useFont48()
+            fontBox.font64fon, fontBox.font64 -> useFont64()
+        }
+    }
 }
