@@ -30,7 +30,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val displayStyle = LabelStyle(game.uiskin.get("text$style$ray", LabelStyle::class.java))
     private val textStyle = LabelStyle(game.uiskin.get("fon$style$ray", LabelStyle::class.java))
     init {
-        numberStyle.font = game.uiskin.font32fon
+        numberStyle.font = game.uiskin.font48fon
         moreStyle.font = game.uiskin.font48fon
         displayStyle.font = game.uiskin.font64
         textStyle.font = game.uiskin.font32fon
@@ -48,10 +48,10 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                     b.isChecked = false
                 }
             })
-            t.add(b).size(80f)
+            t.add(b).height(80f).expandX().fillX()
             if (i==2)t.row()
         }
-        table.add(t)
+        table.add(t).expandX().fillX()
     }
     
     private fun hoursRightAreaCreator(){
@@ -66,18 +66,19 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                     b.isChecked = false
                 }
             })
-            t.add(b).size(80f)
+            t.add(b).height(80f).expandX().fillX()
             if (i==2)t.row()
         }
-        table.add(t)
+        table.add(t).expandX().fillX()
     }
     
     private fun hoursCenterAreaCreator(){
         val b = TextButton("more", moreStyle)
         b.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
-                println("clicked more")
                 b.isChecked = false
+                println("clicked more")
+                game.screen = HoursScreen(game)
             }
         })
         table.add(b).size(240f,160f)
@@ -95,10 +96,10 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                     b.isChecked = false
                 }
             })
-            t.add(b).size(80f)
+            t.add(b).height(80f).expandX().fillX()
             if (i==2)t.row()
         }
-        table.add(t)
+        table.add(t).expandX().fillX()
     }
     
     private fun minutesRightAreaCreator(){
@@ -113,10 +114,10 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                     b.isChecked = false
                 }
             })
-            t.add(b).size(80f)
+            t.add(b).height(80f).expandX().fillX()
             if (i==2)t.row()
         }
-        table.add(t)
+        table.add(t).expandX().fillX()
     }
     
     private fun minutesCenterAreaCreator(){
@@ -142,10 +143,10 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                     b.isChecked = false
                 }
             })
-            t.add(b).size(80f)
+            t.add(b).height(80f).expandX().fillX()
             if (i==2)t.row()
         }
-        table.add(t)
+        table.add(t).expandX().fillX()
     }
     
     private fun secondsRightAreaCreator(){
@@ -160,10 +161,10 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                     b.isChecked = false
                 }
             })
-            t.add(b).size(80f)
+            t.add(b).height(80f).expandX().fillX()
             if (i==2)t.row()
         }
-        table.add(t)
+        table.add(t).expandX().fillX()
     }
     
     private fun secondsCenterAreaCreator(){
@@ -222,7 +223,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                         b.isChecked = false
                     }
                 })
-                table.add(b).size(240f, 160f)
+                table.add(b).height( 160f).expandX().fillX()
             }
         }
     }
@@ -237,7 +238,8 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                     b.isChecked = false
                 }
             })
-            table.add(b).size(240f, 160f)
+            if (i==1) table.add(b).size(240f, 160f)
+            else table.add(b).height( 160f).expandX().fillX()
         }
     }
     

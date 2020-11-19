@@ -26,25 +26,24 @@ class HoursScreen(private val game: GameKeeper) : ScreenAdapter() {
     
     private val numberStyle = TextButtonStyle(game.uiskin.get("fon$style$ray", TextButtonStyle::class.java))
     init {
-        numberStyle.font = game.uiskin.font48fon
+        numberStyle.font = game.uiskin.font64fon
     }
     
-    private fun hoursLeftAreaCreator(){
-        val h = arrayOf(0,1,2,3,4,5)
-        val t = Table()
-        for (i in 0 until h.size){
-            val text = if (i>0) "${h[i]}" else "H"
+    private fun numberCreator(){
+        val h = 0..23
+        for (i in h){
+            val text = if (i>0) "$i" else "H"
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
-                    println("clicked H${h[i]}")
+                    println("clicked H$i")
                     b.isChecked = false
+                    game.screen = TimerScreen(game)
                 }
             })
-            t.add(b).size(80f)
-            if (i==2)t.row()
+            table.add(b).expand().fill()
+            if ((i+1)%3==0 && i<23)table.row()
         }
-        table.add(t)
     }
     
     override fun show() {
@@ -57,7 +56,7 @@ class HoursScreen(private val game: GameKeeper) : ScreenAdapter() {
         table.defaults().space(0f).expandY().align(Align.top)
         table.setFillParent(true)
         
-        hoursLeftAreaCreator()
+        numberCreator()
         
         stage.addActor(table)
         table.setFillParent(true)
