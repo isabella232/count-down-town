@@ -9,20 +9,16 @@ class MemoryCard(private val game: GameKeeper, memoryCardName: String) {
     /**"memory card", for read write game data between restart app etc.*/
     internal val mc = Gdx.app.getPreferences(memoryCardName) /*creation of file will be completed after first save call*/
     
-    /**return random string from numbers 0..9 or "" if len <= 0
-     * @param len length of resulted string*/
-    private fun randNumericString(len:Int):String{
-        val allowed = "0123456789"
-        var string = ""
-        if (len>0) for (i in 0 until len) string += allowed[Random.nextInt(allowed.length)]
-        return string
+    /**return random string from numbers 0..9
+     * @param len length of resulted string. must be > 0*/
+    private fun rns(len:Int) = buildString(len) {
+        for (i in 0 until len) append(Random.nextInt(10))
     }
-    
     
     /**initialization of memory card(game data storage). Run once per each app start*/
     fun connect() {
         if (!mc.contains("uniKey")) { /*first creation of unique key of app*/
-            val uniKey = randNumericString(10)
+            val uniKey = rns(10)
             saveString("uniKey", uniKey)
             save()
         }

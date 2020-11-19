@@ -19,7 +19,7 @@ class GameKeeper(game: ABC) {
         }
     
     /**memory card (data storage , between app restart etc)*/
-    internal val mc = MemoryCard(this, "appMemoryCard")
+    internal val mc = MemoryCard(this, "countDownTownMemoryCard")
     
     /**add mini pattern textures into asset manager*/
     fun prepareAsMan() {

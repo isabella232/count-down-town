@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ExtendViewport
@@ -22,13 +23,25 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val stage: Stage = Stage()
     private val table: Table = Table()
     private val style = "17"
+    private val ray = "sun"
+    
+    private val numberStyle = TextButtonStyle(game.uiskin.get("fon$style$ray", TextButtonStyle::class.java))
+    private val moreStyle = TextButtonStyle(game.uiskin.get("fon$style$ray", TextButtonStyle::class.java))
+    private val displayStyle = LabelStyle(game.uiskin.get("text$style$ray", LabelStyle::class.java))
+    private val textStyle = LabelStyle(game.uiskin.get("fon$style$ray", LabelStyle::class.java))
+    init {
+        numberStyle.font = game.uiskin.font32fon
+        moreStyle.font = game.uiskin.font48fon
+        displayStyle.font = game.uiskin.font64
+        textStyle.font = game.uiskin.font32fon
+    }
     
     private fun hoursLeftAreaCreator(){
         val h = arrayOf(0,1,2,3,4,5)
         val t = Table()
         for (i in 0 until h.size){
             val text = if (i>0) "${h[i]}" else "H"
-            val b = TextButton(text, game.uiskin, style)
+            val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     println("clicked H${h[i]}")
@@ -46,7 +59,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val t = Table()
         for (i in 0 until h.size){
             val text = "${h[i]}"
-            val b = TextButton(text, game.uiskin, style)
+            val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     println("clicked H${h[i]}")
@@ -60,8 +73,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     }
     
     private fun hoursCenterAreaCreator(){
-        game.uiskin.useFont48()
-        val b = TextButton("more", game.uiskin, style)
+        val b = TextButton("more", moreStyle)
         b.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
                 println("clicked more")
@@ -69,7 +81,6 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             }
         })
         table.add(b).size(240f,160f)
-        game.uiskin.useDefault()
     }
     
     private fun minutesLeftAreaCreator(){
@@ -77,7 +88,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val t = Table()
         for (i in 0 until m.size){
             val text = if (i>0) "${m[i]}" else "M"
-            val b = TextButton(text, game.uiskin, style)
+            val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     println("clicked M${m[i]}")
@@ -95,7 +106,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val t = Table()
         for (i in 0 until m.size){
             val text = "${m[i]}"
-            val b = TextButton(text, game.uiskin, style)
+            val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     println("clicked M${m[i]}")
@@ -109,8 +120,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     }
     
     private fun minutesCenterAreaCreator(){
-        game.uiskin.useFont48()
-        val b = TextButton("more", game.uiskin, style)
+        val b = TextButton("more", moreStyle)
         b.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
                 println("clicked more")
@@ -118,7 +128,6 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             }
         })
         table.add(b).size(240f,160f)
-        game.uiskin.useDefault()
     }
     
     private fun secondsLeftAreaCreator(){
@@ -126,7 +135,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val t = Table()
         for (i in 0 until s.size){
             val text = if (i>0) "${s[i]}" else "S"
-            val b = TextButton(text, game.uiskin, style)
+            val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     println("clicked S${s[i]}")
@@ -144,7 +153,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val t = Table()
         for (i in 0 until s.size){
             val text = "${s[i]}"
-            val b = TextButton(text, game.uiskin, style)
+            val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     println("clicked S${s[i]}")
@@ -158,8 +167,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     }
     
     private fun secondsCenterAreaCreator(){
-        game.uiskin.useFont48()
-        val b = TextButton("more", game.uiskin, style)
+        val b = TextButton("more", moreStyle)
         b.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
                 println("clicked more")
@@ -167,16 +175,12 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             }
         })
         table.add(b).size(240f,160f)
-        game.uiskin.useDefault()
     }
     
     /**timer was paused, or fresh state after stop*/
     private var paused = false
-    val displayTimer = Label("00:00:00", game.uiskin, style)
+    val displayTimer = Label("00:00:00", displayStyle)
     private fun timerDisplayCreator(){
-        game.uiskin.defaultTextSun()
-        game.uiskin.useFont64()
-        displayTimer.style = game.uiskin.get(style, LabelStyle::class.java)
         displayTimer.setAlignment(Align.center)
         displayTimer.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
@@ -184,14 +188,12 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             }
         })
         table.add(displayTimer).colspan(3).height(240f).fillX().expandX()
-        game.uiskin.useDefault()
     }
     
-    val displayText = Label("", game.uiskin, style)
+    val displayText = Label("", textStyle)
     private fun textDisplayCreator(){
         displayText.setText("CountDownTown\nfree citizen\ntimer")
         displayText.setAlignment(Align.center)
-//        displayText.style = game.uiskin.get(style, LabelStyle::class.java)
         displayText.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
                 println("clicked text display")
@@ -201,7 +203,6 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     }
     
     private fun saveLoadAreaCreator(){
-        game.uiskin.useFont48()
         val texts = arrayOf("save","dummy","load")
         for (i in 0..2) {
             if (i==1){
@@ -214,7 +215,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                 })
                 table.add(b).size(160f, 160f)
             }else {
-                val b = TextButton(texts[i], game.uiskin, style)
+                val b = TextButton(texts[i], moreStyle)
                 b.addListener(object : ClickListener() {
                     override fun clicked(event: InputEvent, x: Float, y: Float) {
                         println("clicked ${texts[i]}")
@@ -229,7 +230,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     private fun stopSoundAreaCreator(){
         val texts = arrayOf("stop","?","tune")
         for (i in 0..2) {
-            val b = TextButton(texts[i], game.uiskin, style)
+            val b = TextButton(texts[i], moreStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     println("clicked ${texts[i]}")
@@ -238,7 +239,6 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             })
             table.add(b).size(240f, 160f)
         }
-        game.uiskin.useDefault()
     }
     
     
@@ -251,8 +251,6 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         
         table.defaults().space(0f).expandY().align(Align.top)
         table.setFillParent(true)
-        
-        game.uiskin.setDefault(game.uiskin.styleBox.fonsun, game.uiskin.fontBox.font32fon) //just testing, work
         
         hoursLeftAreaCreator()
         hoursCenterAreaCreator()
