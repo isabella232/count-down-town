@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ExtendViewport
 
-/**Save Load Menu screen with buttons*/
+/**General Timer Screen*/
 class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val stage: Stage = Stage()
     private val table: Table = Table()
