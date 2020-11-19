@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ExtendViewport
 
 /**Save Load Menu screen with buttons*/
-class HoursScreen(private val game: GameKeeper) : ScreenAdapter() {
+class MinutesScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val stage: Stage = Stage()
     private val table: Table = Table()
     private val style = "17"
@@ -30,19 +30,19 @@ class HoursScreen(private val game: GameKeeper) : ScreenAdapter() {
     }
     
     private fun numberCreator(){
-        val h = 0..23
+        val h = 0..59
         for (i in h){
-            val text = if (i>0) "$i" else "h"
+            val text = if (i>0) "$i" else "m"
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
-                    println("clicked h$i")
+                    println("clicked m$i")
                     b.isChecked = false
                     game.screen = TimerScreen(game)
                 }
             })
             table.add(b).expand().fill()
-            if ((i+1)%3==0 && i<23)table.row()
+            if ((i+1)%6==0 && i<59)table.row()
         }
     }
     
