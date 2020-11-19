@@ -136,11 +136,11 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val s = arrayOf(0,5,10,15,20,25)
         val t = Table()
         for (i in 0 until s.size){
-            val text = if (i>0) "${s[i]}" else "S"
+            val text = if (i>0) "${s[i]}" else "s"
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
-                    println("clicked S${s[i]}")
+                    println("clicked s${s[i]}")
                     b.isChecked = false
                 }
             })
@@ -158,7 +158,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
-                    println("clicked S${s[i]}")
+                    println("clicked s${s[i]}")
                     b.isChecked = false
                 }
             })
@@ -172,8 +172,9 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val b = TextButton("more", moreStyle)
         b.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
-                println("clicked more")
                 b.isChecked = false
+                println("clicked more")
+                game.screen = SecondsScreen(game)
             }
         })
         table.add(b).size(240f,160f)
