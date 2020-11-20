@@ -12,7 +12,7 @@ object Lwjgl3Launcher {
     }
 
     private fun createApplication(): Lwjgl3Application {
-        return Lwjgl3Application(ABC(), defaultConfiguration)
+        return Lwjgl3Application(ABC(DesktopTimer()), defaultConfiguration)
     }
 
     private val defaultConfiguration: Lwjgl3ApplicationConfiguration

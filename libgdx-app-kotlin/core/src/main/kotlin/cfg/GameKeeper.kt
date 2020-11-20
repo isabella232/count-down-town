@@ -7,8 +7,9 @@ import io.guthub.healingdrawing.countdowntown.ABC
 import saveload.MemoryCard
 import colorstepskin.ColorStepSkin
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
+import timer.GameTimer
 
-class GameKeeper(game: ABC) {
+class GameKeeper(game: ABC, internal val timer: GameTimer) {
     private val rootGame = game
     
     /**recall to root Game.setScreen*/

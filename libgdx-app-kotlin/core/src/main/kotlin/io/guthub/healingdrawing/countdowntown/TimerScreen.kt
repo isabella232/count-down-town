@@ -210,6 +210,12 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         for (i in 0..2) {
             if (i==1){
                 val b = Image(Texture(Gdx.files.internal("cdt.png")))
+                b.addListener(object : ClickListener() {
+                    override fun clicked(event: InputEvent, x: Float, y: Float) {
+                        println("clicked ${texts[i]}")
+                        game.timer.platformPrint()
+                    }
+                })
                 b.setSize(160f,160f)
                 b.addListener(object : ClickListener() {
                     override fun clicked(event: InputEvent, x: Float, y: Float) {
