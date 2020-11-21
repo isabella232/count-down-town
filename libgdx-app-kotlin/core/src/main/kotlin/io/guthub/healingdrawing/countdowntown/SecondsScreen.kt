@@ -36,8 +36,7 @@ class SecondsScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
-                    println("clicked s$i")
-                    b.isChecked = false
+                    game.timer.s(i)
                     game.screen = TimerScreen(game)
                 }
             })
