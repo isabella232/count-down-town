@@ -1,14 +1,12 @@
 package cfg
 
 
-import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.guthub.healingdrawing.countdowntown.ABC
 import saveload.MemoryCard
 import colorstepskin.ColorStepSkin
-import com.badlogic.gdx.graphics.g2d.TextureAtlas
-import com.sun.xml.internal.fastinfoset.util.StringArray
 import timer.GameTimer
+import tune.TuneManager
 
 class GameKeeper(game: ABC, internal val timer: GameTimer) {
     private val rootGame = game
@@ -22,14 +20,8 @@ class GameKeeper(game: ABC, internal val timer: GameTimer) {
     
     /**memory card (data storage , between app restart etc)*/
     internal val mc = MemoryCard(this, "countDownTownMemoryCard")
-    
-    /**add mini pattern textures into asset manager*/
-    fun prepareAsMan() {
-        asMan.load("w200atlas/w200atlas.atlas", TextureAtlas::class.java)
-        asMan.finishLoading()
-    }
-    
-    internal val asMan: AssetManager = AssetManager()
+    /**tunes for playing*/
+    internal val tune = TuneManager()
     
     internal val uiskin: ColorStepSkin = ColorStepSkin()
 //    internal val uitext = UITextManager()
