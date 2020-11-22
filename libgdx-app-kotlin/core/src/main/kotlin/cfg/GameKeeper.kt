@@ -7,6 +7,7 @@ import io.guthub.healingdrawing.countdowntown.ABC
 import saveload.MemoryCard
 import colorstepskin.ColorStepSkin
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
+import com.sun.xml.internal.fastinfoset.util.StringArray
 import timer.GameTimer
 
 class GameKeeper(game: ABC, internal val timer: GameTimer) {
@@ -32,6 +33,8 @@ class GameKeeper(game: ABC, internal val timer: GameTimer) {
     
     internal val uiskin: ColorStepSkin = ColorStepSkin()
 //    internal val uitext = UITextManager()
+    /**array for timers in exported form*/
+    internal var timers = emptyArray<String>()
     
     internal var screenWidth = 1
     internal var screenHeight = 1

@@ -211,18 +211,16 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                     }
                 })
                 b.setSize(160f,160f)
-                b.addListener(object : ClickListener() {
-                    override fun clicked(event: InputEvent, x: Float, y: Float) {
-                        println("clicked ${texts[i]}")
-                    }
-                })
                 table.add(b).size(160f, 160f)
             }else {
                 val b = TextButton(texts[i], moreStyle)
                 b.addListener(object : ClickListener() {
                     override fun clicked(event: InputEvent, x: Float, y: Float) {
-                        println("clicked ${texts[i]}")
                         b.isChecked = false
+                        when(i){
+                            0 -> saveTimer()
+                            2 -> game.screen = LoadScreen(game)
+                        }
                     }
                 })
                 table.add(b).height( 160f).expandX().fillX()
@@ -245,6 +243,10 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         }
     }
     
+    private fun saveTimer(){
+        game.timers += game.timer.export()
+        game.screen = SaveScreen(game)
+    }
     
     override fun show() {
         super.show()

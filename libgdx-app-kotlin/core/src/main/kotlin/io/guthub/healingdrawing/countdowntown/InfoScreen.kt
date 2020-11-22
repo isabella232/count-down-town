@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ExtendViewport
 
-/**Save Load Menu screen with buttons*/
+/**First displayed screen with text*/
 class InfoScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val stage: Stage = Stage()
     private val table: Table = Table()
@@ -38,6 +38,7 @@ class InfoScreen(private val game: GameKeeper) : ScreenAdapter() {
         info.wrap = true
         info.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                game.mc.loadAll()
                 game.screen = TimerScreen(game)
             }
         })
