@@ -1,0 +1,4 @@
+package tune
+
+class TuneManager {
+}

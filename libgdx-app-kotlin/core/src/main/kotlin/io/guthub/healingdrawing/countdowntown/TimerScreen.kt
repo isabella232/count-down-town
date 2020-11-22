@@ -228,14 +228,15 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         }
     }
     
-    private fun stopSoundAreaCreator(){
+    private fun stopTuneAreaCreator(){
         val texts = arrayOf("stop","?","tune")
         for (i in 0..2) {
             val b = TextButton(texts[i], moreStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
-                    println("clicked ${texts[i]}")
-                    b.isChecked = false
+                    when(i){
+                        2 -> game.screen = TuneScreen(game)
+                    }
                 }
             })
             if (i==1) table.add(b).size(240f, 160f)
@@ -276,7 +277,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         table.row()
         saveLoadAreaCreator()
         table.row()
-        stopSoundAreaCreator()
+        stopTuneAreaCreator()
         
         stage.addActor(table)
         table.setFillParent(true)
