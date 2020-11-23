@@ -30,6 +30,19 @@ class LoadScreen(private val game:GameKeeper) : ScreenAdapter() {
     private val table_control: Table = Table()
     private val timers = game.timers
     
+    /**prepare timer for show on screen, and tune+1*/
+    private fun pfs(t:String):String{
+        val p = t.split(" ")
+        val h = String.format("%02d", p[0].toInt())
+        val m = String.format("%02d", p[1].toInt())
+        val s = String.format("%02d", p[2].toInt())
+        val times = when(p[4].toInt()){
+            -1 -> "looped"
+            0 -> "mutted"
+            else -> "times:${p[4]}"
+        }
+        return "$h:$m:$s tune:${p[3].toInt()+1} $times"
+    }
     private fun table_scroll_creator(){
         table_scroll.defaults().space(20f)
         table_scroll.align(Align.top)
@@ -63,14 +76,14 @@ class LoadScreen(private val game:GameKeeper) : ScreenAdapter() {
         for (i in 0 until timers.size){
             table_scroll.row()
             val timer = timers[i]
-            val b = TextButton(timer, buttonStyle)
+            val b = TextButton(pfs(timer), buttonStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     game.timer.import(timer)
                     game.screen = TimerScreen(game)
                 }
             })
-            table_scroll.add(b).width(360f)
+            table_scroll.add(b).width(560f)
         }
     }
     

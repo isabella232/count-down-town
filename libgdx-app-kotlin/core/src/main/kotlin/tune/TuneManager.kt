@@ -12,7 +12,7 @@ class TuneManager {
     var clickCoef = emptyArray<Float>()
     var tune = emptyArray<Music>()
     var tuneCoef = emptyArray<Float>()
-    private val xfiles = Gdx.files.local("tunes/").list().size
+    val xfiles = Gdx.files.local("tunes/").list().size
     fun preload(){
         /*add music files into AssetManager*/
         /*button click*/

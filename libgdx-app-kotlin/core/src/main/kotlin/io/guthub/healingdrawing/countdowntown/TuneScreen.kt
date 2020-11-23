@@ -31,7 +31,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
     private val table_scroll: Table = Table()
     private val scroll = ScrollPane(table_scroll, scrollStyle)
     private val table_control: Table = Table()
-    private val timers = game.timers
+    private val tune = game.tune
     private var deleted = emptyArray<Int>()
     
     private val repeats = arrayOf(0, 1, 3, 5, 7, 10, -1)
@@ -53,11 +53,12 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
         
         tableHead.width = game.worldWidth
         
-        infoLabel.setText(infoTextCreator(game.timer.tune(), game.timer.repeats()))
+        infoLabel.setText("")
         tableHead.add(infoLabel).fillX().expandX()
         
         tableHead.row()
         val rt = Table()
+        rt.defaults().space(20f)
         
         
         for (i in 0 until repeats.size){
@@ -79,38 +80,32 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
     }
     
     private fun table_scroll_creator(){
-//        table_scroll.defaults().space(20f)
+        table_scroll.defaults().space(20f)
         table_scroll.align(Align.top)
         
         /*patterns code*/
-        for (i in 0 until timers.size){
-            if (i>0) table_scroll.row()
-            val timer = timers[i]
-            val b = TextButton(timer, buttonStyle)
+        for (i in 0 until tune.xfiles){
+            val b = TextButton("${i+1}", buttonStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
-                    b.isVisible = false
-                    deleted += i
+                    tune.play(i,1)
                 }
             })
-            table_scroll.add(b).width(360f)
+            tGroup.add(b)
+            if (game.timer.tune() == i) b.isChecked = true
+            table_scroll.add(b).width(120f)
+            if ((i+1)%5 == 0) table_scroll.row()
         }
     }
     
-    private fun deleteTimers(){
-        for (i in deleted) timers[i] = ""
-        var nt = emptyArray<String>()
-        for (timer in timers) if (timer.isNotEmpty()) nt += timer
-        game.timers = nt.copyOf()
-        game.mc.saveTimers()
-    }
     fun table_control_creator(){
         table_control.width = game.worldWidth
         table_control.height = 160f
         val bClose = TextButton("CLOSE", buttonStyle)
         bClose.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
-                deleteTimers()
+                game.timer.repeats(repeats[rGroup.checkedIndex])
+                game.timer.tune(tGroup.checkedIndex)
                 game.screen = TimerScreen(game)
             }
         })
@@ -151,6 +146,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
         super.render(delta)
         Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+        infoLabel.setText(infoTextCreator(tGroup.checkedIndex+1, repeats[rGroup.checkedIndex]))
         stage.act(delta)
         stage.draw()
     }
