@@ -70,8 +70,6 @@ class TuneManager {
     fun setCompleted(){ state = states.completed}
     fun isCompleted() = state == states.completed
     fun isStopped() = state == states.stopped
-    fun stop(){
-        state = states.stopped
-    }
+    fun stop(){ state = states.stopped }
     
 }
