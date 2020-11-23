@@ -32,7 +32,6 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
     private val scroll = ScrollPane(table_scroll, scrollStyle)
     private val table_control: Table = Table()
     private val tune = game.tune
-    private var deleted = emptyArray<Int>()
     
     private val repeats = arrayOf(0, 1, 3, 5, 7, 10, -1)
     private val rGroup = ButtonGroup<TextButton>()
@@ -90,6 +89,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     tune.setPlaying()
                     tune.play(i,1)
+                    tune.stop()
                 }
             })
             tGroup.add(b)

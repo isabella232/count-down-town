@@ -1,22 +1,19 @@
 package timer
 
 import java.time.Duration
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
-import java.time.Period
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 abstract class GameTimer{
-    private val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+    val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
     enum class states{stopped, working, paused, melody}
     var state = states.stopped
-    private var h = 0
-    private var m = 0
-    private var s = 0
-    private var fullTime = LocalDateTime.now().plusHours(h.toLong()).plusMinutes(m.toLong()).plusSeconds(s.toLong())
-    private var startTime = LocalTime.now()
+    var h = 0
+    var m = 0
+    var s = 0
+    var fullTime = LocalDateTime.now().plusHours(h.toLong()).plusMinutes(m.toLong()).plusSeconds(s.toLong())
+    var pauseTime = LocalTime.now()
     /**tune number*/
     private var tune = 1
     /**tune repeats number -1 is infinity*/
@@ -26,6 +23,10 @@ abstract class GameTimer{
     fun m(minutes:Int){if (state == states.stopped) m = minutes}
     fun s(seconds:Int){if (state == states.stopped) s = seconds}
     fun fullTime(){fullTime = LocalDateTime.now().plusHours(h.toLong()).plusMinutes(m.toLong()).plusSeconds(s.toLong())}
+    fun pauseTime(){
+        val dt = dt(LocalDateTime.now(), fullTime)
+        pauseTime = LocalTime.of(dt.hour, dt.minute, dt.second)
+    }
     /**set timer tune*/
     fun tune(number:Int){tune = number}
     /**show used tune number*/
@@ -36,25 +37,12 @@ abstract class GameTimer{
     fun repeats() = repeats
     
     
-    fun show():String = when(state){
-        states.stopped -> LocalTime.of(h,m,s).format(formatter)
-        states.working -> {
-            val text = dts(LocalDateTime.now(),fullTime)
-            if (text == ""){
-                state = states.melody
-            }
-            text
-        }
-        states.melody -> "tune:${tune+1} ${showRepeats()}"
-        else -> "bang"
-    }
-    
-    private fun showRepeats() = when(repeats){
+    fun showRepeats() = when(repeats){
         0 -> "mutted"
         -1 -> "looped"
         else -> "times:$repeats"
     }
-    private fun dts(ts:LocalDateTime,te:LocalDateTime):String{
+    fun dts(ts:LocalDateTime,te:LocalDateTime):String{
         val d = Duration.between(ts,te)
         val hours = d.toHours()%24
         val minutes = d.toMinutes()%60
@@ -63,6 +51,13 @@ abstract class GameTimer{
             d.seconds < 0 -> ""
             else ->  LocalTime.of(hours.toInt(), minutes.toInt(), seconds.toInt()).format(formatter)
         }
+    }
+    private fun dt(ts:LocalDateTime,te:LocalDateTime):LocalTime{
+        val d = Duration.between(ts,te)
+        val hours = d.toHours()%24
+        val minutes = d.toMinutes()%60
+        val seconds = d.seconds%60
+        return LocalTime.of(hours.toInt(), minutes.toInt(), seconds.toInt())
     }
     /** export timer settings to string "h m s tune repeats"*/
     fun export():String{
@@ -78,10 +73,9 @@ abstract class GameTimer{
         repeats = parsed[4].toInt()
     }
     
-    abstract fun platformPrint()
+    abstract fun show():String
     abstract fun start()
-    abstract fun pause()
-    abstract fun resume()
+    abstract fun pause():String
     abstract fun melody():Boolean
     abstract fun stop()
 }

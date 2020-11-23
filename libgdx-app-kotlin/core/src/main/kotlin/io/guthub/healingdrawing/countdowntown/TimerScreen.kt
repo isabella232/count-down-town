@@ -199,6 +199,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         table.add(displayText).colspan(3).height(160f).fillX().expandX()
     }
     
+    private val tune = game.tune
     private fun saveLoadAreaCreator(){
         val texts = arrayOf("save","dummy","load")
         for (i in 0..2) {
@@ -206,8 +207,9 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                 val b = Image(Texture(Gdx.files.internal("cdt.png")))
                 b.addListener(object : ClickListener() {
                     override fun clicked(event: InputEvent, x: Float, y: Float) {
-                        println("clicked ${texts[i]}")
-                        println(game.timer.show())
+                        tune.setPlaying()
+                        tune.play(i,1)
+                        tune.stop()
                     }
                 })
                 b.setSize(160f,160f)
@@ -239,7 +241,6 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                             game.timer.stop()
                             game.tune.stop()
                             b.isChecked = false
-                            println("stop clicked")
                         }
                         2 -> game.screen = TuneScreen(game)
                     }
