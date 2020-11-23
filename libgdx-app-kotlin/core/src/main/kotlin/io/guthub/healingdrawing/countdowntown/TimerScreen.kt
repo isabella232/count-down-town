@@ -235,6 +235,12 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
                     when(i){
+                        0 -> {
+                            game.timer.stop()
+                            game.tune.stop()
+                            b.isChecked = false
+                            println("stop clicked")
+                        }
                         2 -> game.screen = TuneScreen(game)
                     }
                 }
@@ -289,6 +295,16 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
         
         displayTimer.setText(game.timer.show())
+        if (game.timer.melody()){
+            if (game.tune.isCompleted()){
+                game.timer.stop()
+                game.tune.stop()
+            }
+            else if (game.tune.isStopped()){
+                game.tune.setPlaying()
+                game.tune.play(game.timer.tune(), game.timer.repeats())
+            }
+        }
         
         stage.act(delta)
         stage.draw()

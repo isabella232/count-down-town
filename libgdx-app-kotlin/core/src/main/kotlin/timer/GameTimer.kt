@@ -17,7 +17,7 @@ abstract class GameTimer{
     private var s = 0
     private var fullTime = LocalDateTime.now().plusHours(h.toLong()).plusMinutes(m.toLong()).plusSeconds(s.toLong())
     private var startTime = LocalTime.now()
-    /**tune number 0 is silence*/
+    /**tune number*/
     private var tune = 1
     /**tune repeats number -1 is infinity*/
     private var repeats = 1
@@ -39,9 +39,12 @@ abstract class GameTimer{
         states.stopped -> LocalTime.of(h,m,s).format(formatter)
         states.working -> {
             val text = dts(LocalDateTime.now(),fullTime)
-            if (text == "") state = states.stopped
+            if (text == ""){
+                state = states.melody
+            }
             text
         }
+        states.melody -> "tune:${tune+1} repeats:$repeats"
         else -> "bang"
     }
     
@@ -73,5 +76,6 @@ abstract class GameTimer{
     abstract fun start()
     abstract fun pause()
     abstract fun resume()
+    abstract fun melody():Boolean
     abstract fun stop()
 }

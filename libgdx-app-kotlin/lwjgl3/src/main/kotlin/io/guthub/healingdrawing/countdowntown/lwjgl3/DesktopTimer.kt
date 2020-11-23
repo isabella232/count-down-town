@@ -26,5 +26,6 @@ class DesktopTimer : GameTimer(){
     }
     override fun pause(){}
     override fun resume(){}
-    override fun stop(){}
+    override fun melody() = state == states.melody
+    override fun stop(){state = states.stopped}
 }

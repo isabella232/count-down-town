@@ -88,6 +88,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
             val b = TextButton("${i+1}", buttonStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.setPlaying()
                     tune.play(i,1)
                 }
             })

@@ -12,6 +12,10 @@ class TuneManager {
     var clickCoef = emptyArray<Float>()
     var tune = emptyArray<Music>()
     var tuneCoef = emptyArray<Float>()
+    
+    private enum class states{playing,completed,stopped}
+    private var state = states.stopped
+    
     val xfiles = Gdx.files.local("tunes/").list().size
     fun preload(){
         /*add music files into AssetManager*/
@@ -42,18 +46,32 @@ class TuneManager {
                 else -> value
             }
         }
-    var looped = false
+    
     /**play timer tune*/
     fun play(tuneNumber:Int, repeats:Int){
-        val music = tune[tuneNumber]
-        music.volume = volume * tuneCoef[tuneNumber]
-        if (repeats > 0){
-            music.setOnCompletionListener { Music.OnCompletionListener { play(tuneNumber,repeats-1) } }
-            music.play()
-        }
-        else if (repeats == -1 && looped){
-            music.setOnCompletionListener { Music.OnCompletionListener { play(tuneNumber,-1) } }
-            music.play()
+        if (isPlaying()) {
+            val music = tune[tuneNumber]
+            music.volume = volume * tuneCoef[tuneNumber]
+            when {
+                repeats > 0 -> {
+                    music.setOnCompletionListener { play(tuneNumber, repeats - 1) }
+                    music.play()
+                }
+                repeats == -1 -> {
+                    music.setOnCompletionListener { play(tuneNumber, -1) }
+                    music.play()
+                }
+                else -> setCompleted()
+            }
         }
     }
+    fun setPlaying() { state = states.playing}
+    fun isPlaying() = state == states.playing
+    fun setCompleted(){ state = states.completed}
+    fun isCompleted() = state == states.completed
+    fun isStopped() = state == states.stopped
+    fun stop(){
+        state = states.stopped
+    }
+    
 }
