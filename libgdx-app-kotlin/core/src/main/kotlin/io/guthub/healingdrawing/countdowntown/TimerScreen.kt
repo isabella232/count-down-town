@@ -24,16 +24,19 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val table: Table = Table()
     private val style = "17"
     private val ray = "sun"
+    private val styleText = "57"
+    private val rayText = "dark"
+    private val styleDisplay = "51"
     
     private val numberStyle = TextButtonStyle(game.uiskin.get("fon$style$ray", TextButtonStyle::class.java))
     private val moreStyle = TextButtonStyle(game.uiskin.get("fon$style$ray", TextButtonStyle::class.java))
-    private val displayStyle = LabelStyle(game.uiskin.get("text$style$ray", LabelStyle::class.java))
-    private val textStyle = LabelStyle(game.uiskin.get("fon$style$ray", LabelStyle::class.java))
+    private val displayStyle = LabelStyle(game.uiskin.get("text$styleDisplay$ray", LabelStyle::class.java))
+    private val textStyle = LabelStyle(game.uiskin.get("hue$styleText$rayText", LabelStyle::class.java))
     init {
         numberStyle.font = game.uiskin.font48fon
         moreStyle.font = game.uiskin.font48fon
         displayStyle.font = game.uiskin.font64
-        textStyle.font = game.uiskin.font32fon
+        textStyle.font = game.uiskin.font32
     }
     
     private fun hoursLeftAreaCreator(){

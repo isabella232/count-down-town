@@ -15,16 +15,24 @@ import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ExtendViewport
 
 /**First displayed screen with text*/
-class InfoScreen(private val game: GameKeeper) : ScreenAdapter() {
+class ZeroScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val stage: Stage = Stage()
     private val table: Table = Table()
     private val style = "62"
     private val info = Label("", game.uiskin, style)
     private val pbar = ProgressBar(0f, 1f,0.01f,false, game.uiskin, style)
     
-    private val text = "Text" +
-            "\n\nTOUCH THE SCREEN TO BEGIN THE ADVENTURE !" +
-            "\n\n\"healingdrawing.github.io\"" +
+    private val text = "\nCountdown timer with" +
+            "\nsave/load functionality" +
+            "\nand several prebuilded" +
+            "\nrepeatable tunes" +
+            "\n\n\n\n\n" +
+            "\n\nCountDownTown" +
+            "\n\nTOUCH THE SCREEN" +
+            "\nTO BEGIN THE ADVENTURE !" +
+            "\n\n\n\n\n\n\n\n\n\n" +
+            "\n\nFree Open Source Software" +
+            "\n\"healingdrawing.github.io\"" +
             "\n2020"
     private var labelClicked = false
     
@@ -39,7 +47,7 @@ class InfoScreen(private val game: GameKeeper) : ScreenAdapter() {
         
         
         info.setText("loading tunes...")
-        info.setAlignment(Align.center)
+        info.setAlignment(Align.top)
         info.wrap = true
         info.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {

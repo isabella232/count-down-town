@@ -17,6 +17,6 @@ class ABC(timer: GameTimer) : Game() {
         game.screenWidth = graphics.width
         game.screenHeight = graphics.height
         
-        setScreen(InfoScreen(game))
+        setScreen(ZeroScreen(game))
     }
 }
