@@ -78,7 +78,7 @@ class MemoryCard(private val game: GameKeeper, memoryCardName: String) {
     }
     
     /**load timers from device storage*/
-    fun loadTimers() {
+    private fun loadTimers() {
         if (mc.contains("timers")) {
             val box = mc.getString("timers")
             val timers = box.split("  ")
@@ -91,8 +91,33 @@ class MemoryCard(private val game: GameKeeper, memoryCardName: String) {
         }
     }
     
+    
+    /**save used tune to device storage
+     * @param fcs force save*/
+    fun saveTune(fcs: Boolean = true) {
+        val tune = game.timer.tune()
+        val repeats = game.timer.repeats()
+        val volume = game.tune.volume
+        saveString("tune", "$tune", false)
+        saveString("repeats", "$repeats", false)
+        saveString("volume", "$volume", false)
+        if (fcs) save()
+    }
+    
+    /**load used tune from device storage*/
+    private fun loadTune() {
+        if (mc.contains("tune") && mc.contains("repeats") && mc.contains("volume")) {
+            game.timer.tune(mc.getInteger("tune", 1))
+            game.timer.repeats(mc.getInteger("repeats", 1))
+            game.tune.volume = mc.getFloat("volume", 1f)
+        }
+    }
+    
+    
+    
     fun loadAll() {
         loadTimers()
+        loadTune()
     }
     
 }

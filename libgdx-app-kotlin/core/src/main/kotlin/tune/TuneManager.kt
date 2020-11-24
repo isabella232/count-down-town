@@ -38,7 +38,7 @@ class TuneManager {
     }
     
     /**global game tune volume 0f..1f. Extend to slider controlling limits later*/
-    var volume = 1f
+    var volume = 0.5f
         set(value) {
             field = when{
                 value < 0 -> 0f

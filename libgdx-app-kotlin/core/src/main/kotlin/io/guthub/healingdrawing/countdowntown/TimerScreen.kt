@@ -215,7 +215,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                 b.addListener(object : ClickListener() {
                     override fun clicked(event: InputEvent, x: Float, y: Float) {
                         tune.setPlaying()
-                        tune.play(i,1)
+                        tune.play(game.timer.tune(),1)
                         tune.stop()
                     }
                 })

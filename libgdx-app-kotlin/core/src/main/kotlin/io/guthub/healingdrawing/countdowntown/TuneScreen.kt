@@ -4,6 +4,7 @@ import cfg.GameKeeper
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.ScreenAdapter
 import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup
@@ -11,9 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle
+import com.badlogic.gdx.scenes.scene2d.ui.Slider
+import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ExtendViewport
@@ -24,10 +28,12 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
     private val labelStyle = LabelStyle(game.uiskin.get("text${style}sun",LabelStyle::class.java))
     private val buttonStyle = TextButtonStyle(game.uiskin.get("fon${style}sun",TextButtonStyle::class.java))
     private val scrollStyle = ScrollPaneStyle(game.uiskin.get("text${style}sun",ScrollPaneStyle::class.java))
+    private val sliderStyle = SliderStyle(game.uiskin.get("text${style}sun",SliderStyle::class.java))
     private val stage: Stage = Stage()
     private val table: Table = Table()
     private val tableHead = Table()
     private val infoLabel = Label("", labelStyle)
+    private val volume = Slider(0f, 1f, 0.01f, false, sliderStyle)
     private val table_scroll: Table = Table()
     private val scroll = ScrollPane(table_scroll, scrollStyle)
     private val table_control: Table = Table()
@@ -68,6 +74,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
             }, buttonStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     infoLabel.setText(infoTextCreator(tGroup.checkedIndex+1, repeats[i]))
                 }
             })
@@ -76,6 +83,17 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
             if (game.timer.repeats() == repeats[i]) b.isChecked = true
         }
         tableHead.add(rt)
+        
+        tableHead.row()
+        tableHead.add(volume).fillX().expandX()
+        volume.value = game.tune.volume
+        volume.addListener(object : ChangeListener() {
+            override fun changed(event: ChangeEvent, actor: Actor) {
+                tune.bc()
+                game.tune.volume = volume.value
+                infoLabel.setText(infoTextCreator(tGroup.checkedIndex+1, repeats[rGroup.checkedIndex]))
+            }
+        })
     }
     
     private fun table_scroll_creator(){
@@ -108,6 +126,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
                 tune.bc()
                 game.timer.repeats(repeats[rGroup.checkedIndex])
                 game.timer.tune(tGroup.checkedIndex)
+                game.mc.saveTune()
                 game.screen = TimerScreen(game)
             }
         })
@@ -129,7 +148,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
         
         table_scroll_creator()
         
-        scroll.setSize(game.worldWidth,game.worldHeight-440f)
+        scroll.setSize(game.worldWidth,game.worldHeight-340f)
         scroll.setScrollingDisabled(true,false)
         scroll.setCancelTouchFocus(false)
         scroll.setScrollbarsOnTop(true)
@@ -155,8 +174,8 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
     
     private fun refreshSizes(w:Int,h:Int){
         game.refreshSizes(stage.viewport)
-        tableHead.setSize(game.worldWidth,320f)
-        scroll.setSize(game.worldWidth,game.worldHeight-480f)
+        tableHead.setSize(game.worldWidth,180f)
+        scroll.setSize(game.worldWidth,game.worldHeight-340f)
         table_control.setSize(game.worldWidth, 160f)
     }
     override fun resize(width: Int, height: Int) {
