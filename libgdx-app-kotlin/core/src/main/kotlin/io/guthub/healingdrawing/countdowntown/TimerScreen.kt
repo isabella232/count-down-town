@@ -44,6 +44,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     b.isChecked = false
                     game.timer.h(h[i])
                 }
@@ -62,6 +63,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     b.isChecked = false
                     game.timer.h(h[i])
                 }
@@ -76,6 +78,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val b = TextButton("more", moreStyle)
         b.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 game.screen = HoursScreen(game)
             }
         })
@@ -90,6 +93,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     b.isChecked = false
                     game.timer.m(m[i])
                 }
@@ -108,6 +112,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     b.isChecked = false
                     game.timer.m(m[i])
                 }
@@ -122,6 +127,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val b = TextButton("more", moreStyle)
         b.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 game.screen = MinutesScreen(game)
             }
         })
@@ -136,6 +142,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     b.isChecked = false
                     game.timer.s(s[i])
                 }
@@ -154,6 +161,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(text, numberStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     b.isChecked = false
                     game.timer.s(s[i])
                 }
@@ -168,19 +176,19 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         val b = TextButton("more", moreStyle)
         b.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 game.screen = SecondsScreen(game)
             }
         })
         table.add(b).size(240f,160f)
     }
     
-    /**timer was paused, or fresh state after stop*/
-    private var paused = false
-    val displayTimer = Label("00:00:00", displayStyle)
+    val displayTimer = Label("", displayStyle)
     private fun timerDisplayCreator(){
         displayTimer.setAlignment(Align.center)
         displayTimer.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 game.timer.start()
             }
         })
@@ -193,7 +201,6 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
         displayText.setAlignment(Align.center)
         displayText.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
-                println("clicked text display")
             }
         })
         table.add(displayText).colspan(3).height(160f).fillX().expandX()
@@ -218,6 +225,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                 val b = TextButton(texts[i], moreStyle)
                 b.addListener(object : ClickListener() {
                     override fun clicked(event: InputEvent, x: Float, y: Float) {
+                        tune.bc()
                         b.isChecked = false
                         when(i){
                             0 -> saveTimer()
@@ -236,6 +244,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             val b = TextButton(texts[i], moreStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     when(i){
                         0 -> {
                             game.timer.stop()

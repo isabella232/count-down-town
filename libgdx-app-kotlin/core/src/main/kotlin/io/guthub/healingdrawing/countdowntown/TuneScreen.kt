@@ -105,6 +105,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
         val bClose = TextButton("CLOSE", buttonStyle)
         bClose.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 game.timer.repeats(repeats[rGroup.checkedIndex])
                 game.timer.tune(tGroup.checkedIndex)
                 game.screen = TimerScreen(game)

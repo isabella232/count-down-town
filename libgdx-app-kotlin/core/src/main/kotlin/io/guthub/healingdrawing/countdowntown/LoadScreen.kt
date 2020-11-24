@@ -29,6 +29,7 @@ class LoadScreen(private val game:GameKeeper) : ScreenAdapter() {
     private val scroll = ScrollPane(table_scroll, scrollStyle)
     private val table_control: Table = Table()
     private val timers = game.timers
+    private val tune = game.tune
     
     /**prepare timer for show on screen, and tune+1*/
     private fun pfs(t:String):String{
@@ -60,6 +61,7 @@ class LoadScreen(private val game:GameKeeper) : ScreenAdapter() {
         val btnHome = TextButton(homeText, buttonStyle)
         btnHome.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 btnHome.isChecked = false
                 Gdx.net.openURI("https://healingdrawing.github.io/")
             }
@@ -79,6 +81,7 @@ class LoadScreen(private val game:GameKeeper) : ScreenAdapter() {
             val b = TextButton(pfs(timer), buttonStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     game.timer.import(timer)
                     game.screen = TimerScreen(game)
                 }
@@ -91,6 +94,7 @@ class LoadScreen(private val game:GameKeeper) : ScreenAdapter() {
         val bClose = TextButton("CLOSE", buttonStyle)
         bClose.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 game.screen = TimerScreen(game)
             }
         })

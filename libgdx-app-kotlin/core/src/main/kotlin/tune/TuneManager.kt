@@ -72,4 +72,11 @@ class TuneManager {
     fun isStopped() = state == states.stopped
     fun stop(){ state = states.stopped }
     
+    /**play button click sound*/
+    fun bc(){
+        val music = click[0]
+        music.volume = volume * clickCoef[0]
+        music.stop()
+        music.play()
+    }
 }

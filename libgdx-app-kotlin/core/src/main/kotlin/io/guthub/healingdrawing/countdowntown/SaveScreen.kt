@@ -31,6 +31,7 @@ class SaveScreen(private val game:GameKeeper) : ScreenAdapter() {
     private val table_control: Table = Table()
     private val timers = game.timers
     private var deleted = emptyArray<Int>()
+    private val tune = game.tune
     
     private fun tableHeadCreator(){
         tableHead.defaults().space(20f)
@@ -48,6 +49,7 @@ class SaveScreen(private val game:GameKeeper) : ScreenAdapter() {
         val btnHome = TextButton(homeText, buttonStyle)
         btnHome.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 btnHome.isChecked = false
                 Gdx.net.openURI("https://healingdrawing.github.io/")
             }
@@ -85,6 +87,7 @@ class SaveScreen(private val game:GameKeeper) : ScreenAdapter() {
             val b = TextButton(pfs(timer), buttonStyle)
             b.addListener(object : ClickListener() {
                 override fun clicked(event: InputEvent, x: Float, y: Float) {
+                    tune.bc()
                     b.isVisible = false
                     deleted += i
                 }
@@ -106,6 +109,7 @@ class SaveScreen(private val game:GameKeeper) : ScreenAdapter() {
         val bClose = TextButton("CLOSE", buttonStyle)
         bClose.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
+                tune.bc()
                 deleteTimers()
                 game.screen = TimerScreen(game)
             }
