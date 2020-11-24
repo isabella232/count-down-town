@@ -254,6 +254,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
                             game.tune.stop()
                             b.isChecked = false
                         }
+                        1 -> game.screen = InfoScreen(game)
                         2 -> game.screen = TuneScreen(game)
                     }
                 }
