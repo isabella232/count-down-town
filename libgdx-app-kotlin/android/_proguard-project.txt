@@ -43,8 +43,3 @@
    boolean reportFixture(long);
    float   reportRayFixture(long, float, float, float, float, float);
 }
-
-# added manually section, that solve crush of app after flag -> load complete
--keep class com.badlogic.gdx.graphics.g2d.BitmapFont
--keep class com.badlogic.gdx.graphics.Color
--keep class com.badlogic.gdx.scenes.scene2d.ui.** { <init>(...); <fields>;  }

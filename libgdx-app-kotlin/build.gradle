@@ -11,6 +11,7 @@ buildscript {
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 		classpath "com.android.tools.build:gradle:$androidPluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		classpath 'com.guardsquare:proguard-gradle:7.0.0'
     }
 }
 
@@ -29,7 +30,7 @@ configure(subprojects - project(':android')) {
 }
 
 subprojects {
-	version = '0.0.1-SNAPSHOT'
+	version = 'base'
 	ext.appName = 'CountDownTown'
 	repositories {
 		mavenLocal()

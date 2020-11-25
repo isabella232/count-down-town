@@ -33,7 +33,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
     private val table: Table = Table()
     private val tableHead = Table()
     private val infoLabel = Label("", labelStyle)
-    private val volume = Slider(0f, 1f, 0.01f, false, sliderStyle)
+    private val volume = Slider(0f, 1f, 0.1f, false, sliderStyle)
     private val table_scroll: Table = Table()
     private val scroll = ScrollPane(table_scroll, scrollStyle)
     private val table_control: Table = Table()
@@ -45,9 +45,9 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
     
     private fun infoTextCreator(tune:Int, repeats:Int):String{
         val infoText = when(repeats){
-            -1 -> "will looped"
+            -1 -> "play looped & volume ${(this.tune.volume*100).toInt()}%"
             0 -> "will mutted"
-            else -> "will play ${repeats} times"
+            else -> "play ${repeats} times & volume ${(this.tune.volume*100).toInt()}%"
         }
         return "tune ${tune} $infoText"
     }
@@ -58,7 +58,7 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
         
         tableHead.width = game.worldWidth
         
-        infoLabel.setText("")
+        infoLabel.setAlignment(Align.center)
         tableHead.add(infoLabel).fillX().expandX()
         
         tableHead.row()
@@ -89,8 +89,8 @@ class TuneScreen(private val game:GameKeeper) : ScreenAdapter() {
         volume.value = game.tune.volume
         volume.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
-                tune.bc()
                 game.tune.volume = volume.value
+//                tune.bc() //android fail
                 infoLabel.setText(infoTextCreator(tGroup.checkedIndex+1, repeats[rGroup.checkedIndex]))
             }
         })

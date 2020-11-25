@@ -34,3 +34,14 @@ jar {
 	}
 }
 
+task proguard(type: proguard.gradle.ProGuardTask) {
+	configuration 'proguard-rules.pro'
+	printmapping 'build/libs/out.map'
+	if (System.getProperty('java.version').startsWith('1.')) {
+		libraryjars "${System.getProperty('java.home')}/lib/rt.jar"
+	} else {
+		libraryjars "${System.getProperty('java.home')}/jmods/java.base.jmod", jarfilter: '!**.jar', filter: '!module-info.class'
+	}
+	injars 'build/libs/CountDownTown-base.jar'
+	outjars 'build/libs/CountDownTown.jar'
+}

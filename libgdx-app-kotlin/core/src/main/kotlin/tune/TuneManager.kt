@@ -16,7 +16,11 @@ class TuneManager {
     private enum class states{playing,completed,stopped}
     private var state = states.stopped
     
-    val xfiles = Gdx.files.local("tunes/").list().size
+    /*2020-11-24 fail on desktop, no fixes found, finally hardcoded bottom
+    val xfiles = Gdx.files.internal("tunes/").list().size
+    */
+    val xfiles = 5
+    
     fun preload(){
         /*add music files into AssetManager*/
         /*button click*/
