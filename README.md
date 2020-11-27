@@ -11,4 +11,4 @@ Save/load functionality with several repeatable tunes.
 ---
 Volume control, using gui.  
 
-<img src="temp/volume.png" width="400"/>
+<img src="temp/tune.png" width="400"/>
