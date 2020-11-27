@@ -8,25 +8,18 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="cdt-timer-logo.svg"
+   sodipodi:docname="icon.svg"
    inkscape:version="1.0.1 (1.0.1+r73)"
    id="svg8"
    version="1.1"
    viewBox="0 0 264.58332 264.58334"
    height="1000"
    width="1000"
-   inkscape:export-filename="/mnt/sda3/development/codehost/count-down-town/temp/cdt.png"
-   inkscape:export-xdpi="24"
-   inkscape:export-ydpi="24">
+   inkscape:export-filename="/mnt/sda3/development/codehost/count-down-town/temp/icon/icon128.png"
+   inkscape:export-xdpi="12.288"
+   inkscape:export-ydpi="12.288">
   <defs
      id="defs2">
-    <inkscape:perspective
-       sodipodi:type="inkscape:persp3d"
-       inkscape:vp_x="0 : 132.29167 : 1"
-       inkscape:vp_y="0 : 1000 : 0"
-       inkscape:vp_z="264.58332 : 132.29167 : 1"
-       inkscape:persp3d-origin="132.29166 : 88.194447 : 1"
-       id="perspective886" />
     <linearGradient
        inkscape:collect="always"
        id="linearGradient1205">
@@ -191,8 +184,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.23607604"
-     inkscape:cx="-260.83587"
-     inkscape:cy="697.43105"
+     inkscape:cx="-260.79416"
+     inkscape:cy="697.40599"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      inkscape:document-rotation="0"

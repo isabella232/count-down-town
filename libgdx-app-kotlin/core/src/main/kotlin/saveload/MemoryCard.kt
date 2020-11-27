@@ -113,8 +113,6 @@ class MemoryCard(private val game: GameKeeper, memoryCardName: String) {
         }
     }
     
-    
-    
     fun loadAll() {
         loadTimers()
         loadTune()
