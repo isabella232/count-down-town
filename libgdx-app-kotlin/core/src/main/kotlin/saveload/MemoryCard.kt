@@ -98,9 +98,9 @@ class MemoryCard(private val game: GameKeeper, memoryCardName: String) {
         val tune = game.timer.tune()
         val repeats = game.timer.repeats()
         val volume = game.tune.volume
-        saveString("tune", "$tune", false)
-        saveString("repeats", "$repeats", false)
-        saveString("volume", "$volume", false)
+        saveInt("tune", tune, false)
+        saveInt("repeats", repeats, false)
+        saveFloat("volume", volume, false)
         if (fcs) save()
     }
     
