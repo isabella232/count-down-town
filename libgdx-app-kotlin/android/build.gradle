@@ -31,7 +31,7 @@ android {
 	}
 	defaultConfig {
 		applicationId 'io.guthub.healingdrawing.countdowntown'
-		minSdkVersion 26
+		minSdkVersion 23
 		targetSdkVersion 29
 		versionCode 1
 		versionName "1.0"

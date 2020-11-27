@@ -19,7 +19,7 @@ class TuneManager {
     /*2020-11-24 fail on desktop, no fixes found, finally hardcoded bottom
     val xfiles = Gdx.files.internal("tunes/").list().size
     */
-    val xfiles = 5
+    val xfiles = 71
     
     fun preload(){
         /*add music files into AssetManager*/

@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.ExtendViewport
+import timer.GameTimer.states.stopped
 
 /**General Timer Screen*/
 class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
@@ -193,6 +194,7 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
             override fun clicked(event: InputEvent, x: Float, y: Float) {
                 tune.bc()
                 game.timer.start()
+                if (game.timer.state == stopped) game.tune.stop()
             }
         })
         table.add(displayTimer).colspan(3).height(240f).fillX().expandX()
