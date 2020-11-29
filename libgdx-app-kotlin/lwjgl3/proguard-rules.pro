@@ -23,12 +23,12 @@
 
  # mr.anderson stuff
 
-#-keep public class io.github.healingdrawing.countdowntown.lwjgl3.Lwjgl3Launcher {
-#    public static void main(java.lang.String[]);
-#}
+-keep public class io.guthub.healingdrawing.countdowntown.lwjgl3.Lwjgl3Launcher {
+    public static void main(java.lang.String[]);
+}
 
 #-keep public class !io.github.healingdrawing.countdowntown** { *; }
--keep public class !io.github.healingdrawing.countdowntown**,!cfg**,!saveload**,!timer**,!tune** { *; }
+-keep public class !io.guthub.healingdrawing.countdowntown**,!cfg**,!saveload**,!timer**,!tune** { *; }
 
 -forceprocessing
 #-classobfuscationdictionary 'obfuscationClassNames.txt'
