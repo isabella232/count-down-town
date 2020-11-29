@@ -1,5 +1,6 @@
-# count-down-town
-countdown timer gui app, based on crossplatform libgdx framework, using kotlin
+# CountDownTown
+Countdown timer gui app, based on crossplatform libgdx framework, using kotlin.  
+Available releases for linux, win, mac, android(not polished, just ported) on [playstore](https://play.google.com/store/apps/details?id=io.guthub.healingdrawing.countdowntown)
 
 <img src="temp/cdt-timer-logo.svg" width="400"/>
 
