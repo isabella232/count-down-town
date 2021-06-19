@@ -23,19 +23,19 @@ import timer.GameTimer.states.stopped
 class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val stage: Stage = Stage()
     private val table: Table = Table()
-    private val style = "17"
-    private val ray = "sun"
-    private val styleText = "57"
+    private val style = "11"
+    private val ray = "snow"
+    private val styleText = "11"
     private val rayText = "dark"
     private val styleDisplay = "51"
     
-    private val numberStyle = TextButtonStyle(game.uiskin.get("fon$style$ray", TextButtonStyle::class.java))
-    private val moreStyle = TextButtonStyle(game.uiskin.get("fon$style$ray", TextButtonStyle::class.java))
+    private val numberStyle = TextButtonStyle(game.uiskin.get("text$style$ray", TextButtonStyle::class.java))
+    private val moreStyle = TextButtonStyle(game.uiskin.get("text$style$ray", TextButtonStyle::class.java))
     private val displayStyle = LabelStyle(game.uiskin.get("text$styleDisplay$ray", LabelStyle::class.java))
     private val textStyle = LabelStyle(game.uiskin.get("hue$styleText$rayText", LabelStyle::class.java))
     init {
-        numberStyle.font = game.uiskin.font48fon
-        moreStyle.font = game.uiskin.font48fon
+        numberStyle.font = game.uiskin.font48
+        moreStyle.font = game.uiskin.font48
         displayStyle.font = game.uiskin.font64
         textStyle.font = game.uiskin.font32
     }
@@ -307,7 +307,9 @@ class TimerScreen(private val game: GameKeeper) : ScreenAdapter() {
     
     override fun render(delta: Float) {
         super.render(delta)
-        Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1f)
+//        Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1f)
+//        Gdx.gl.glClearColor(1f, 1f, 1f, 1f)
+        Gdx.gl.glClearColor(0.22f, 0.11f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
         
         displayTimer.setText(game.timer.show())

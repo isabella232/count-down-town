@@ -2,21 +2,29 @@ package colorstepskin
 
 import com.badlogic.gdx.graphics.Color
 
-class ColorBoxDark {
+/** handmade balanced color ranges based oh hue of HSV color scheme, for more smooth perception
+ * @param hs x12 hue steps from 0f to 360f (must be 0 first 360 last value) for other values binded to this hue
+ * @param cs x12 color saturations binded to [hs] hue steps. Each item is 0f..1f
+ * @param cv x12 color values binded to [hs] hue steps. Each item is 0f..1f
+ * */
+class ColorBoxHSV(
+        private val hs:Array<Float>,
+        private val cs:Array<Float>,
+        private val cv:Array<Float>
+) {
     private val c:Array<Color> = Array(101){ Color() }
     /**return Color depend of incoming integer hsv h - hue component from 0..100. Every next 10 is gray 0 10 20 100
      * @param hue hsv h value from 0..100*/
-    fun color(hue:Int):Color{return if (hue in 0..100) c[hue] else c[100]}
-    /**hsv h hueStep*/
-    private val hs = arrayOf(
-            0f,30f,60f,90f,120f,150f,180f,210f,240f,270f,300f,330f,
-            360f
-    )
-    /**hsv v colorValue*/
-    private val cv = arrayOf(
-            70/100f,70/100f,60/100f,60/100f,60/100f,60/100f,58/100f,75/100f,75/100f,68/100f,64/100f,68/100f,
-            70/100f //first element duplication for looping
-    )
+    fun color(hue:Int): Color {return if (hue in 0..100) c[hue] else c[100]}
+//    /**hsv h hueStep*/
+//    private val hs = arrayOf(0f, 30f, 60f, 120f, 150f, 180f, 210f, 240f, 270f, 300f, 330f, 360f)
+//    /**hsv s colorSaturation*/
+//    private val cs = arrayOf(76 / 100f, 100 / 100f, 100 / 100f, 54 / 100f, 68 / 100f, 68 / 100f, 68 / 100f, 100 / 100f, 100 / 100f, 59 / 100f, 65 / 100f, 76 / 100f)
+//    /**hsv v colorValue*/
+//    private val cv = arrayOf(
+//            90/100f,87/100f,67/100f,72/100f,72/100f,72/100f,72/100f,100/100f,100/100f,100/100f,80/100f,84/100f,
+//            90/100f //first element duplication for looping
+//    )
     
     private fun grayHsv(hue:Int):FloatArray{
         return arrayOf(0.0f, 0.0f, 0.7f+hue/100.0f*0.3f).toFloatArray()
@@ -46,10 +54,13 @@ class ColorBoxDark {
         val dHueStep = hs[rn] - hs[rn-1]
         val dHue = hue - hs[rn-1]
         val d = dHue / dHueStep
+        /**hsv s*/
+        val ds = cs[rn]-cs[rn-1]
+        val s = cs[rn-1] + ds * (if (ds<0)d*d else 1-d*d)
         /**hsv v*/
         val dv = cv[rn]-cv[rn-1]
-        val v = (cv[rn-1] + dv * (if (dv<0)d*d else 1-d*d)) * 1.1f /*xp increase coef*/
-        return arrayOf(hue, 0.5f, v).toFloatArray()
+        val v = cv[rn-1] + dv * (if (dv<0)d*d else 1-d*d)
+        return arrayOf(hue, s, v).toFloatArray()
     }
     
     /*2020-11-16 new stuff about color pair. planned name space text0..100, fon0..100, for two contrasts schemes
@@ -166,6 +177,6 @@ class ColorBoxDark {
             cp[hue*2  ].a = 1f
             cp[hue*2+1].a = 1f
         }
-    
+        
     }
 }

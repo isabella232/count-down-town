@@ -18,13 +18,13 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport
 class SecondsScreen(private val game: GameKeeper) : ScreenAdapter() {
     private val stage: Stage = Stage()
     private val table: Table = Table()
-    private val style = "17"
-    private val ray = "sun"
+    private val style = "57"
+    private val ray = "snow"
     private val tune = game.tune
     
     private val numberStyle = TextButtonStyle(game.uiskin.get("fon$style$ray", TextButtonStyle::class.java))
     init {
-        numberStyle.font = game.uiskin.font64fon
+        numberStyle.font = game.uiskin.font64
     }
     
     private fun numberCreator(){

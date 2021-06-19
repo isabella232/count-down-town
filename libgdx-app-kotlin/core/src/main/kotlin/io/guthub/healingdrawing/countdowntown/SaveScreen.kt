@@ -39,24 +39,24 @@ class SaveScreen(private val game:GameKeeper) : ScreenAdapter() {
     
         tableHead.width = game.worldWidth
         
-        val sendInfo = "Not forget about donation..."
-        val sendLabel = Label(sendInfo, labelStyle)
-        sendLabel.setAlignment(Align.center)
-        tableHead.add(sendLabel).fillX().expandX()
-    
-        tableHead.row()
-        val homeText = "OPEN DEVELOPERS SITE TO DONATE"
-        val btnHome = TextButton(homeText, buttonStyle)
-        btnHome.addListener(object : ClickListener() {
-            override fun clicked(event: InputEvent, x: Float, y: Float) {
-                tune.bc()
-                btnHome.isChecked = false
-                Gdx.net.openURI("https://healingdrawing.github.io/")
-            }
-        })
-        tableHead.add(btnHome)
-    
-        tableHead.row()
+//        val sendInfo = "Not forget about donation..."
+//        val sendLabel = Label(sendInfo, labelStyle)
+//        sendLabel.setAlignment(Align.center)
+//        tableHead.add(sendLabel).fillX().expandX()
+//
+//        tableHead.row()
+//        val homeText = "OPEN DEVELOPERS SITE TO DONATE"
+//        val btnHome = TextButton(homeText, buttonStyle)
+//        btnHome.addListener(object : ClickListener() {
+//            override fun clicked(event: InputEvent, x: Float, y: Float) {
+//                tune.bc()
+//                btnHome.isChecked = false
+//                Gdx.net.openURI("https://healingdrawing.github.io/")
+//            }
+//        })
+//        tableHead.add(btnHome)
+//
+//        tableHead.row()
         val text = "SAVED TIMERS.\n\nTouch to delete timer."
         val vt = Label(text, labelStyle)
         vt.setAlignment(Align.center)

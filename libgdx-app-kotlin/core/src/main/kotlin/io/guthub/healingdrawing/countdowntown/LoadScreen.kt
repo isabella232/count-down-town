@@ -48,27 +48,27 @@ class LoadScreen(private val game:GameKeeper) : ScreenAdapter() {
         table_scroll.defaults().space(20f)
         table_scroll.align(Align.top)
         
-        val sendInfo = "Your support is important ! \n" +
-                "To interesting things appeared \n" +
-                "no need to be shy ..."
-        val sendLabel = Label(sendInfo, labelStyle)
-        sendLabel.wrap = true
-        sendLabel.setAlignment(Align.center)
-        table_scroll.add(sendLabel).fillX()
+//        val sendInfo = "Your support is important ! \n" +
+//                "To interesting things appeared \n" +
+//                "no need to be shy ..."
+//        val sendLabel = Label(sendInfo, labelStyle)
+//        sendLabel.wrap = true
+//        sendLabel.setAlignment(Align.center)
+//        table_scroll.add(sendLabel).fillX()
         
-        table_scroll.row()
-        val homeText = "OPEN DEVELOPERS SITE TO DONATE"
-        val btnHome = TextButton(homeText, buttonStyle)
-        btnHome.addListener(object : ClickListener() {
-            override fun clicked(event: InputEvent, x: Float, y: Float) {
-                tune.bc()
-                btnHome.isChecked = false
-                Gdx.net.openURI("https://healingdrawing.github.io/")
-            }
-        })
-        table_scroll.add(btnHome)
+//        table_scroll.row()
+//        val homeText = "OPEN DEVELOPERS SITE TO DONATE"
+//        val btnHome = TextButton(homeText, buttonStyle)
+//        btnHome.addListener(object : ClickListener() {
+//            override fun clicked(event: InputEvent, x: Float, y: Float) {
+//                tune.bc()
+//                btnHome.isChecked = false
+//                Gdx.net.openURI("https://healingdrawing.github.io/")
+//            }
+//        })
+//        table_scroll.add(btnHome)
         
-        table_scroll.row()
+//        table_scroll.row()
         val text = "Touch to load timer."
         val vt = Label(text, labelStyle)
         vt.setAlignment(Align.center)
